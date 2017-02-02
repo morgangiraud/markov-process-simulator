@@ -1,2 +1,4 @@
-# markov-process-simulator
-A markov process simulator: play with markov process, markov reward process and markov decision process
+# Markov process simulator
+Play with markov process, markov reward process and markov decision process
+
+Readme coming soon!
