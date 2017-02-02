@@ -2,7 +2,7 @@
   "name": "markov-simulation",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://morgangiraud.github.io/mps",
+  "homepage": "http://morgangiraud.com/mps",
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "react-scripts": "0.8.5"

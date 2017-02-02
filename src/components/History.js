@@ -9,7 +9,7 @@ class History extends PureComponent {
   }
 
   componentDidUpdate() {
-    let currentX = this.firstText.getComputedTextLength()
+    let currentX = this.firstText.getComputedTextLength() + 5
     this.textElements.forEach((textElement) => {
       if (textElement) {
         textElement.setAttribute("x", currentX)
@@ -31,7 +31,7 @@ class History extends PureComponent {
       >
         H:  
       </text>
-       { this.props.history.slice(-24).map((event, key) => {
+       { this.props.history.slice(-18).map((event, key) => {
           return (
             <text
               ref={(textEl) => { this.textElements[key] = textEl; } }

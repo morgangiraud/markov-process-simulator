@@ -47,7 +47,7 @@ const MarkovProcessSelect = ({ mp, onClickUpdateMarkovType }) => {
         Share:
         <input
           id="exportLink"
-          value={window.location.origin + "?data=" +  mp.export()}
+          value={window.location.origin + window.location.pathname + "?data=" +  mp.export()}
           onClick={onClickSelect}
           readOnly
         />(click to copy)
