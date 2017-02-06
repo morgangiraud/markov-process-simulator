@@ -22,7 +22,7 @@ class App extends PureComponent {
   
   render() {
     return (
-      <Grid id="App">
+      <Grid id="App" fluid={true}>
         { !this.props.isViewer ? <Dashboard /> : null }
         <Col xs={12} md={ this.props.isViewer ? 12 : 6}>
           <Graph />
