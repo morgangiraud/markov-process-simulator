@@ -8,7 +8,7 @@ const unitSize = 45
 
 
 let mouseMoveListener = (e, startValue, startY, rowIndex, colIndex, callback) => {
-  let dy = parseFloat((startY - e.pageY) / 50)
+  let dy = parseFloat((startY - e.pageY) / 40)
   if (isNaN(dy)) {dy = 0}
   callback(rowIndex, colIndex, startValue + dy)
   return

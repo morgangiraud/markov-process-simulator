@@ -1,5 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 
+import { namespaces as d3Namespaces } from "d3";
+
+let historySize = 12
 class History extends PureComponent {
   constructor(){
     super()
@@ -20,31 +23,37 @@ class History extends PureComponent {
 
   render() {
     this.textElements = Array(this.props.history.length)
+    let width = this.props.width
+      , height = this.props.height
     return (
-      <g 
-        transform={this.props.transformString}
+      <svg
+        xmlns={d3Namespaces.svg}
+        width={ width }
+        height={ height }
       >
-      <text
-        ref={(firstText) => { this.firstText = firstText }}
-        dominantBaseline="central"
-        stroke="none"
-      >
-        H:  
-      </text>
-       { this.props.history.slice(-18).map((event, key) => {
-          return (
-            <text
-              ref={(textEl) => { this.textElements[key] = textEl; } }
-              key={key}
-              dominantBaseline="central"
-              stroke="none"
-              fill={event.stroke}
-            >
-            { event.value + ", "}
-            </text>
-          )
-        })}
-    </g>  
+        <g transform={`translate(0, ${height/2})`}>
+        <text
+          ref={(firstText) => { this.firstText = firstText }}
+          dominantBaseline="central"
+          stroke="none"
+        >
+          H:  
+        </text>
+         { this.props.history.slice(-historySize).map((event, key) => {
+            return (
+              <text
+                ref={(textEl) => { this.textElements[key] = textEl; } }
+                key={key}
+                dominantBaseline="central"
+                stroke="none"
+                fill={event.stroke}
+              >
+              {  event.value + (key === this.props.history.length-1 || key === historySize-1 ? "" : ", ") }
+              </text>
+            )
+          })}
+      </g>
+    </svg> 
     );
   }
   
@@ -52,7 +61,8 @@ class History extends PureComponent {
 
 History.propTypes = {
   history: PropTypes.array.isRequired,
-  transformString: PropTypes.string
+  width: PropTypes.number,
+  height: PropTypes.number,
 }
 
 export default History;

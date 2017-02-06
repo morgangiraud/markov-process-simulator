@@ -65,8 +65,8 @@ class Dashboard extends Component {
       )
     }
     return (
-      <Col xs={12} md={6}>
-        <MarkovProcessSelect 
+      <Col xs={12} md={6} className="top-margin">
+        <MarkovProcessSelect
           mp={this.props.mp} 
           onClickUpdateMarkovType={this.props.onClickUpdateMarkovType}
         />

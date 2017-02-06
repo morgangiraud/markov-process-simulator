@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Row, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 
 const AgentDashboard = ({ states, agent, onClickSwitchAgent, onSelectChangeAgentCurrentState }) => {
   let options = states.map((state, i) => {
@@ -10,18 +10,29 @@ const AgentDashboard = ({ states, agent, onClickSwitchAgent, onSelectChangeAgent
   return (
     <Row className='panel panel-default'>
       <p>Agent state:</p>
-      <div>
-        Current state: 
-        <select value={agent.currentState} onChange={onSelectChangeAgentCurrentState}>
-          { options }
-        </select>
-      </div>
-      <div>
-        Number of step: { agent.nbStep }
-      </div>
-      <div>
-        Current cumulated reward: { agent.cumulatedReward }
-      </div>
+      <Col>
+        <Row>
+          <Col xs={6} md={6}>
+            Current state: 
+            <select value={agent.currentState} onChange={onSelectChangeAgentCurrentState}>
+              { options }
+            </select>
+          </Col>
+          <Col xs={6} md={6}>
+            Agent speed: 
+          </Col>
+        </Row>
+      </Col>
+      <Col>
+        <Row>
+          <Col xs={6} md={6}>
+            Current timestep: { agent.nbStep }
+          </Col>
+          <Col xs={6} md={6}>
+            Current cumulated reward: { agent.cumulatedReward }
+          </Col>
+        </Row>
+      </Col>
       <div>
         <Button
           bsSize="sm"

@@ -5,7 +5,8 @@ const initialState = {
   currentState: 0,
   nbStep: 0,
   cumulatedReward: 0,
-  shouldEvaluate: false
+  shouldEvaluate: false,
+  speedCoef: 1
 }
 
 export default (state=initialState, action) => {

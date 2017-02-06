@@ -1,34 +1,53 @@
-import React, { PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 
 import utils from '../utils'
 
 
-const Link = ({ link }) => {
-  return (
-    <g 
-      className={ link.class }
-    >
-      <path
-        id={`path-${link.source.data.name}-${link.target.data.name}`}
-        markerEnd="url(#arrow)"
-        strokeWidth={link.p * 10 + 1}
-        stroke={utils.getColor(link.source.data)}
-        fill="none"
-        d={utils.createD(link)}
+class Link extends PureComponent {
+  constructor(){
+    super()
+
+    this.link = null
+    this.text = null
+  }
+
+  componentDidMount() {
+    let len = this.link.getTotalLength()
+      , p = this.link.getPointAtLength(0.5 * len)
+    this.text.setAttribute("transform", `translate(${p.x - 10}, ${p.y + 5})`)
+  }
+
+  componentDidUpdate() {
+    let len = this.link.getTotalLength()
+      , p = this.link.getPointAtLength(0.5 * len)
+    this.text.setAttribute("transform", `translate(${p.x - 10}, ${p.y + 5})`)
+  }
+
+  render() {
+    let link = this.props.link
+    return (
+      <g
+        className={ link.class }
       >
-      </path>
-      <text
-        dy="-5"
-      >
-        <textPath
-          href={ `#path-${link.source.data.name}-${link.target.data.name}` }
-          startOffset="49%"
+        <path
+          ref={ (link) => { this.link = link } }
+          id={`path-${link.source.data.name}-${link.target.data.name}`}
+          markerEnd="url(#arrow)"
+          strokeWidth={link.p * 10 + 1}
+          stroke={utils.getColor(link.source.data)}
+          fill="none"
+          d={utils.createD(link)}
+        >
+        </path>
+        <text
+          ref={ (text) => { this.text = text } }
         >
           { Math.floor(link.p * 100) / 100 }
-        </textPath>
-      </text>
-    </g>
-  )
+          
+        </text>
+      </g>
+    )
+  }
 }
 
 Link.propTypes = {
