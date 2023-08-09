@@ -1,12 +1,12 @@
-import * as types from '../actions/historyActions';
+import * as types from "../actions/historyActions";
 
-export default (state=[], action) => {
-  switch(action.type){
+export default (state = [], action) => {
+  switch (action.type) {
     case types.ADD_EVENT:
-      return [...state, action.event]
+      return [...state, action.event];
     case types.UPDATE_HISTORY:
-      return action.history
+      return action.history;
     default:
-      return state
+      return state;
   }
-}
+};

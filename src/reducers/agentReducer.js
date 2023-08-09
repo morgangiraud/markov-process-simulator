@@ -1,4 +1,4 @@
-import * as types from '../actions/agentActions';
+import * as types from "../actions/agentActions";
 
 const initialState = {
   startAgent: false,
@@ -6,16 +6,16 @@ const initialState = {
   nbStep: 0,
   cumulatedReward: 0,
   shouldEvaluate: false,
-  speedCoef: 1
-}
+  speedCoef: 1,
+};
 
-export default (state=initialState, action) => {
-  switch(action.type){
+export default (state = initialState, action) => {
+  switch (action.type) {
     case types.SWITCH_AGENT:
-      return {...state, startAgent:!state.startAgent}
+      return { ...state, startAgent: !state.startAgent };
     case types.UPDATE:
-      return {...state, ...action.agent}
+      return { ...state, ...action.agent };
     default:
-      return state
+      return state;
   }
-}
+};
