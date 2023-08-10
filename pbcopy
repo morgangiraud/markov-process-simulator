@@ -1,0 +1,64 @@
+{
+  "name": "mps",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://mps.morgangiraud.com",
+  "devDependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/d3-force": "^3.0.4",
+    "@types/d3-selection": "^3.0.5",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.9",
+    "@types/randomcolor": "^0.5.7",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/redux-logger": "^3.0.9",
+    "@types/url-parse": "^1.4.8",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "gh-pages": "^5.0.0",
+    "npm-check-updates": "^16.10.18",
+    "prettier": "^3.0.1",
+    "react-scripts": "5.0.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "d3": "^7.8.5",
+    "d3-force": "^3.0.0",
+    "d3-selection": "^3.0.0",
+    "immutability-helper": "^3.1.1",
+    "mathjs": "^11.9.1",
+    "prop-types": "^15.8.1",
+    "randomcolor": "^0.6.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
+    "typescript": "^5.1.6",
+    "url-parse": "^1.5.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "deploy": "yarn build && yarn gh-pages -d build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

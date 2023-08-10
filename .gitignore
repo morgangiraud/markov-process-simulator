@@ -12,5 +12,6 @@ build
 # misc
 .DS_Store
 .env
+yarn-error.log
 npm-debug.log
 tmp
