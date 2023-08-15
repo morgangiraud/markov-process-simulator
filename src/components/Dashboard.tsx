@@ -88,10 +88,10 @@ const Dashboard: React.FC<PropsFromRedux> = ({
       <MarkovProcessProps />
 
       {mp instanceof MarkovRewardProcess && (
-        <Row>
+        <Row className="m-2">
           <p>State-value function:</p>
           <Row>
-            <Col xs={4} md={4}>
+            <Col>
               <Button
                 size="sm"
                 variant="primary"
@@ -103,7 +103,7 @@ const Dashboard: React.FC<PropsFromRedux> = ({
                 Reset values to 0
               </Button>
             </Col>
-            <Col xs={4} md={4}>
+            <Col>
               <Button
                 size="sm"
                 variant="primary"
@@ -115,7 +115,7 @@ const Dashboard: React.FC<PropsFromRedux> = ({
                 Evaluate
               </Button>
             </Col>
-            <Col xs={4} md={4}>
+            <Col>
               <Button
                 size="sm"
                 variant="primary"
@@ -127,9 +127,8 @@ const Dashboard: React.FC<PropsFromRedux> = ({
                 Evaluate step-by-step
               </Button>
             </Col>
-          </Row>
-          <Row>
-            <Col xs={4} md={4}>
+
+            <Col>
               <Button
                 size="sm"
                 variant="primary"

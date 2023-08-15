@@ -85,6 +85,9 @@ We are using SVG to produce the different MP visualizations. Thanks to React for
 - ~~Implements saving/loading/viewer feature~~
 - ~~Implement an agent~~
 - ~~Implements a state-value function solver + an agent based one~~
+- Port the code to typescript and add eslint
+  - Fix add/remove nodes
+  - Fix drag rewards
 - Implements a Markov decision process simulator
 - Implements a policy iteration algorithm and an action-value function solver
 

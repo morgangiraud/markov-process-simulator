@@ -44,7 +44,7 @@ const AgentDashboard: React.FC<PropsFromRedux> = ({
   onSelectChangeAgentCurrentState,
 }) => {
   return (
-    <Col>
+    <Col className="m-2">
       <h3>Agent state:</h3>
       <Col>
         <Row>

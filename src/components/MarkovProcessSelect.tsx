@@ -32,7 +32,7 @@ const MarkovProcessSelect: React.FC<MarkovProcessSelectProps> = ({
   onClickUpdateMarkovType,
 }) => {
   return (
-    <Row>
+    <Row className="m-2">
       <Row>
         <h3>Markov process type:</h3>
       </Row>

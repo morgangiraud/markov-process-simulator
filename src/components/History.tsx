@@ -24,18 +24,20 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const History: React.FC<PropsFromRedux> = ({ history, updateHistory }) => {
   return (
-    <Row className="d-flex align-items-center">
-      <Button className="mr-3" onClick={() => updateHistory([])}>
-        Clear
-      </Button>
-      <div className="d-flex flex-wrap flex-grow-1">
-        <span className="mr-2">History:</span>
-        {history.map((event, key) => (
-          <span key={key}>
-            <span style={{ color: event.stroke }}>{event.value}</span>
-            {key === history.length - 1 ? "" : ", "}
-          </span>
-        ))}
+    <Row className="d-flex align-items-center m-2">
+      <div className="d-flex align-items-center">
+        <Button className="mr-3" onClick={() => updateHistory([])}>
+          Clear
+        </Button>
+        <div className="d-flex flex-wrap flex-grow-1">
+          <span className="m-2">History:</span>
+          {history.map((event, key) => (
+            <span key={key}>
+              <span style={{ color: event.stroke }}>{event.value}</span>
+              {key === history.length - 1 ? "" : ", "}
+            </span>
+          ))}
+        </div>
       </div>
     </Row>
   );
