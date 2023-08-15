@@ -16,12 +16,12 @@ type McAction =
   | { type: typeof types.UPDATE_HORIZON; horizon: number }
   | { type: typeof types.UPDATE_EPSILON; epsilon: number }
   | {
-      type: typeof types.ADD_STATE;
+      type: typeof types.ADD_MARKOV_STATE;
       state: Partial<MarkovProcessState | MarkovRewardProcessState>;
       pi: number[];
     }
-  | { type: typeof types.REMOVE_STATE; piIndex: number }
-  | { type: typeof types.EXPORT_MC };
+  | { type: typeof types.REMOVE_MARKOV_STATE; piIndex: number }
+  | { type: typeof types.EXPORT_MP };
 
 const initialState = new MarkovProcess([{}], [[1]]);
 
@@ -73,7 +73,7 @@ export default (
     case types.UPDATE_EPSILON:
       return markovProcess.update({ epsilon: action.epsilon });
 
-    case types.ADD_STATE: {
+    case types.ADD_MARKOV_STATE: {
       if (markovProcess instanceof MarkovRewardProcess) {
         const newState = {
           states: [
@@ -99,7 +99,7 @@ export default (
       }
     }
 
-    case types.REMOVE_STATE: {
+    case types.REMOVE_MARKOV_STATE: {
       if (markovProcess instanceof MarkovRewardProcess) {
         const newState = {
           states: markovProcess.states.filter(

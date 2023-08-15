@@ -18,7 +18,7 @@ function mapStateToProps(state: RootState) {
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
     onClickAddState: () => {
-      dispatch(mcActions.addState({}, []));
+      dispatch(mcActions.addMarkovState({}, undefined));
     },
     onBlurUpdateGamma: (e: React.FocusEvent<HTMLInputElement>) => {
       dispatch(mcActions.updateGamma(parseFloat(e.target.value)));
@@ -74,7 +74,7 @@ const MarkovProcessPropsComponent: React.FC<PropsFromRedux> = ({
           </Col>
           <Col>Determinant: {Math.floor(mp.det * 100000) / 100000}</Col>
           <Col md={12}>
-            <Matrix mat={mp.P} />
+            <Matrix vecOrMat={mp.P} />
           </Col>
         </Row>
       </Col>
@@ -112,7 +112,7 @@ const MarkovProcessPropsComponent: React.FC<PropsFromRedux> = ({
               <Col>
                 <div>
                   <p>Rewards:</p>
-                  <Matrix mat={mp.rewards} />
+                  <Matrix vecOrMat={mp.rewards} />
                 </div>
               </Col>
             )}

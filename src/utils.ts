@@ -86,6 +86,12 @@ export const getNode = (
   }
 };
 
+export const isVec = (
+  vecOrMat: number[] | number[][],
+): vecOrMat is number[] => {
+  return !Array.isArray(vecOrMat[0]);
+};
+
 const utils = {
   // Stats
 
@@ -256,7 +262,11 @@ const utils = {
   addPiToP: function (P: P, newPi?: number[]) {
     if (Array.isArray(newPi)) {
       if (newPi.length !== P.length + 1) {
-        throw new Error("newPi has not the right length");
+        throw new Error(
+          `newPi has not the right length: ${newPi.length}, ${
+            P.length + 1
+          } expected`,
+        );
       }
     } else {
       newPi = Array(P[0].length + 1).fill(1 / (P[0].length + 1));
