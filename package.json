@@ -3,36 +3,66 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "http://mps.morgangiraud.com",
-  "devDependencies": {
-    "gh-pages": "^5.0.0",
-    "npm-check-updates": "^16.10.18",
-    "prettier": "^3.0.1",
-    "react-scripts": "5.0.1"
-  },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "bootstrap": "^5.3.1",
-    "d3": "^7.8.5",
+    "d3-ease": "^3.0.1",
     "d3-force": "^3.0.0",
     "d3-selection": "^3.0.0",
-    "immutability-helper": "^3.1.1",
+    "d3-transition": "^3.0.1",
     "mathjs": "^11.9.1",
-    "prop-types": "^15.8.1",
     "randomcolor": "^0.6.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2",
-    "url-parse": "^1.5.10"
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.22.5",
+    "@testing-library/dom": "^9.3.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/d3-ease": "^3.0.0",
+    "@types/d3-force": "^3.0.4",
+    "@types/d3-selection": "^3.0.5",
+    "@types/d3-transition": "^3.0.3",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.4.9",
+    "@types/randomcolor": "^0.5.7",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/redux-logger": "^3.0.9",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.1",
+    "gh-pages": "^5.0.0",
+    "prettier": "^3.0.1",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.1.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "yarn build && yarn gh-pages -d build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write ."
+    "lint": "prettier --check . && eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "eslint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "deploy": "yarn build && yarn gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
