@@ -19,7 +19,7 @@ const State: React.FC<StateProps> = ({ node, value }) => {
 
   let nodeShape;
   if (node.data.terminal === true) {
-    const r = node.data.r ?? 40;
+    const r = node.data.r;
     nodeShape = (
       <rect
         stroke={utils.getColor(node.data)}

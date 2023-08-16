@@ -14,7 +14,7 @@ export const checkMarkovStates = (states: Partial<MarkovProcessState>[]) => {
     return {
       name: `S${i}`,
       class: "state",
-      r: state.r || 40,
+      r: state.r || 60,
       seed: state.seed || Math.random().toString(36).substr(2, 5),
       terminal: state.terminal || false,
     } as MarkovProcessState;
@@ -28,7 +28,7 @@ export const checkMarkovRewardStates = (
     return {
       name: `S${i}`,
       class: "state",
-      r: state.r || 40,
+      r: state.r || 30,
       seed: state.seed || Math.random().toString(36).substr(2, 5),
       terminal: state.terminal || false,
       reward: state.reward || 0,
@@ -130,23 +130,26 @@ const utils = {
     return Array.isArray(rewards) ? rewards : Array(statesLength).fill(0);
   },
 
-  checkGamma: function (gamma: number | string | undefined) {
-    if (!gamma) return 0.99;
+  checkGamma: function (gamma: number | undefined) {
+    if (typeof gamma === "undefined") return 0.99;
 
-    gamma = typeof gamma === "number" ? gamma : parseFloat(gamma);
     gamma = Math.min(Math.max(gamma, 0), 1);
-    return isNaN(gamma) ? 0.99 : gamma;
+    if (isNaN(gamma)) {
+      throw new Error("gamma is not a number");
+    }
+
+    return gamma;
   },
 
   checkHorizon: function (horizon: number | undefined) {
-    if (!horizon) return Infinity;
+    if (typeof horizon === "undefined") return Infinity;
 
     horizon = Math.max(horizon, 0);
     return isNaN(horizon) ? Infinity : horizon;
   },
 
   checkEpsilon: function (epsilon: number | string | undefined) {
-    if (!epsilon) return 1e-3;
+    if (typeof epsilon === "undefined") return 1e-3;
 
     epsilon = typeof epsilon === "number" ? epsilon : parseFloat(epsilon);
     epsilon = Math.min(Math.max(epsilon, 0), 1);

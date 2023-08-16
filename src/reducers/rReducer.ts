@@ -61,7 +61,6 @@ export default (state: RState = initialState, action: RActions) => {
       }
       return {
         values: rUtils.syncValueEvaluation(
-          state.values,
           mp.P,
           mp.rewards,
           mp.gamma,

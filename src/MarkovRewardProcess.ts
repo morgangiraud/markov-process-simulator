@@ -42,6 +42,7 @@ export class MarkovRewardProcess {
     // Markov reward process
     this.rewards = utils.checkRewards(rewards, this.states.length);
     this.gamma = utils.checkGamma(gamma);
+    console.log(this.gamma, gamma);
     this.horizon = utils.checkHorizon(horizon);
     this.epsilon = utils.checkEpsilon(epsilon);
 

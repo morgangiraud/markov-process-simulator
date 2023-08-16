@@ -33,9 +33,7 @@ describe("rUtils - syncValueEvaluation", () => {
     const gamma = 1;
     const horizon = Infinity;
     const epsilon = 1e-2;
-    const currentValues = [0, 0];
     const newValues = rUtils.syncValueEvaluation(
-      currentValues,
       P,
       rewards,
       gamma,
@@ -55,9 +53,7 @@ describe("rUtils - syncValueEvaluation", () => {
     const gamma = 0;
     const horizon = Infinity;
     const epsilon = 1e-2;
-    const currentValues = [0, 0];
     const newValues = rUtils.syncValueEvaluation(
-      currentValues,
       P,
       rewards,
       gamma,
@@ -77,9 +73,7 @@ describe("rUtils - syncValueEvaluation", () => {
     const gamma = 1;
     const horizon = 0;
     const epsilon = 1e-2;
-    const currentValues = [0, 0];
     const newValues = rUtils.syncValueEvaluation(
-      currentValues,
       P,
       rewards,
       gamma,
@@ -99,9 +93,7 @@ describe("rUtils - syncValueEvaluation", () => {
     const gamma = 1 / 2;
     const horizon = Infinity;
     const epsilon = 1e-2;
-    const currentValues = [0, 0];
     const newValues = rUtils.syncValueEvaluation(
-      currentValues,
       P,
       rewards,
       gamma,
@@ -121,9 +113,7 @@ describe("rUtils - syncValueEvaluation", () => {
     const gamma = 0.99;
     const horizon = Infinity;
     const epsilon = 1e-2;
-    const currentValues = [0, 0];
     const newValues = rUtils.syncValueEvaluation(
-      currentValues,
       P,
       rewards,
       gamma,

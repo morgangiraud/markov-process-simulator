@@ -30,19 +30,6 @@ const Graph: React.FC<PropsFromRedux> = ({ width, height, mp, values }) => {
   const shouldAddValues =
     values.length === mp.states.length && !(mp instanceof MarkovProcess);
 
-  // TODO: might need a context for this?
-  // const { d3Nodes, d3Links } = useMemo(() => {
-  //   let { d3Nodes, d3Links } = initializeForceSimulation<MarkovProcessState>(
-  //     mp.states,
-  //     mp.P,
-  //   );
-
-  //   if (mp instanceof MarkovRewardProcess) {
-  //     d3Nodes = addRewardsToStates(d3Nodes, mp.rewards);
-  //   }
-  //   return { d3Nodes, d3Links };
-  // }, [mp.states, mp.P]);
-
   const nodes = mp.d3Nodes.map((node, i) => (
     <State
       key={i}

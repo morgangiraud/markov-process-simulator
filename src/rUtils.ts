@@ -3,17 +3,16 @@ import utils from "./utils";
 
 const rUtils = {
   syncValueEvaluation: (
-    currentRewardValues: number[],
     P: P,
     rewards: number[],
-    gamma: number | string,
+    gamma: number,
     horizon: number,
     epsilon: number = 1e-2,
   ) => {
     let currentDiff = 1,
-      T = 0;
+      T = 0,
+      currentRewardValues = Array(rewards.length).fill(0);
 
-    gamma = typeof gamma === "number" ? gamma : parseFloat(gamma);
     gamma = Math.min(Math.max(gamma, 0), 1);
     if (isNaN(gamma)) {
       gamma = 0;
@@ -39,6 +38,7 @@ const rUtils = {
         rewards,
         gamma,
       );
+      console.log({ currentRewardValues });
       // console.log(`T:${T} -> ${currentDiff}`, currentValues, T <= 1);
     }
     return currentRewardValues;
@@ -50,33 +50,33 @@ const rUtils = {
     rewards: number[],
     gamma: number,
   ): [number[], number] => {
-    const len = rewards.length;
-
     const currentRewardValuesMat = currentRewardValues.map((val) => {
       return [val];
     });
 
-    const tmpValues = utils
+    const oneStepRewards = utils
       .multiply(P, currentRewardValuesMat)
-      .map((row, r) => {
-        if (P[r][r] === 1 && row[0] !== 0) {
+      .map((averagedNextRewardRow, stateIdx) => {
+        const avgNextReward = averagedNextRewardRow[0];
+        if (P[stateIdx][stateIdx] === 1 && avgNextReward !== 0) {
           // Terminal state
-          return row;
+          return averagedNextRewardRow[0];
         }
-        row[0] = rewards[r] + gamma * row[0];
-        return row;
+        return rewards[stateIdx] + gamma * avgNextReward;
       });
-    const firstTmpValuesFloored = tmpValues.map(
-      (arrVal) => Math.floor(arrVal[0] * 1000) / 1000,
+    const oneStepRewardsFloored = oneStepRewards.map(
+      (arrVal) => Math.floor(arrVal * 1000) / 1000,
     );
+    console.log({ currentRewardValuesMat, oneStepRewardsFloored, gamma });
 
-    let currentDiff = 0;
+    let avgCurrentDiff = 0;
+    const len = rewards.length;
     for (let i = len - 1; i >= 0; i--) {
-      currentDiff += Math.abs(tmpValues[i][0] - currentRewardValuesMat[i][0]);
+      avgCurrentDiff += Math.abs(oneStepRewards[i] - currentRewardValues[i]);
     }
-    currentDiff /= len;
+    avgCurrentDiff /= len;
 
-    return [firstTmpValuesFloored, currentDiff];
+    return [oneStepRewardsFloored, avgCurrentDiff];
   },
 };
 export default rUtils;

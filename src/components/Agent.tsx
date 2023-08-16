@@ -105,15 +105,15 @@ const Agent: React.FC<PropsFromRedux> = ({
       const pStart = path.getPointAtLength(0);
       d3AgentNode
         .transition()
-        .delay(300 * agent.speedCoef)
-        .duration(200 * agent.speedCoef)
+        .delay(200 * agent.speedCoef)
+        .duration(100 * agent.speedCoef)
         .attr("transform", `translate(${pStart.x}, ${pStart.y})`)
         .transition()
-        .duration(500 * agent.speedCoef)
+        .duration(400 * agent.speedCoef)
         .attrTween("transform", utils.translateAlong(path))
         .ease(easeLinear)
         .transition()
-        .duration(200 * agent.speedCoef)
+        .duration(100 * agent.speedCoef)
         .attr("transform", `translate(${nextNodeData.x}, ${nextNodeData.y})`)
         .on("end", () => {
           const shouldContinue =

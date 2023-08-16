@@ -1,10 +1,4 @@
-import {
-  forceSimulation,
-  forceManyBody,
-  forceCenter,
-  forceLink,
-} from "d3-force";
-import { det } from "mathjs";
+import { cos, det, sin } from "mathjs";
 
 import { MarkovProcessState } from "./types/markovProcessState";
 import { MarkovRewardProcessState } from "./types/markovRewardProcessState";
@@ -50,8 +44,6 @@ export const initializeForceSimulation = <
   states: T[],
   P: P,
 ) => {
-  const linkDistance = 90 * Math.sqrt(states.length);
-
   const d3Nodes = buildNodes<T>([...states]);
   const d3Links = buildLinks<T>(P, d3Nodes);
   const terminalStates = utils.findTerminalStates<T>(d3Links);
@@ -59,19 +51,6 @@ export const initializeForceSimulation = <
   d3Nodes.forEach((node) => {
     node.data.terminal = terminalStates.includes(node);
   });
-
-  const simulation = forceSimulation()
-    .nodes(d3Nodes)
-    .force("charge", forceManyBody().strength(-50))
-    .force("qcenter", forceCenter(0, 0))
-    .force(
-      "link",
-      forceLink(d3Links).distance(() => linkDistance),
-    );
-
-  for (let i = 0; i < 600; i++) {
-    simulation.tick();
-  }
 
   return { d3Nodes, d3Links };
 };
@@ -81,8 +60,16 @@ export const buildNodes = <
 >(
   states: T[],
 ) => {
-  return states.map((state) => {
-    return { data: state } as Node<T>;
+  const separationAngle = (2 * Math.PI) / states.length;
+  const circleRadius = 250;
+
+  return states.map((state, i) => {
+    return {
+      data: state,
+      index: i,
+      x: circleRadius * cos(i * separationAngle),
+      y: circleRadius * sin(i * separationAngle),
+    } as Node<T>;
   });
 };
 

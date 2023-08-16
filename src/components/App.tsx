@@ -43,7 +43,7 @@ const App: React.FC<PropsFromRedux> = ({ mp, isViewer, initValues }) => {
         <AgentDashboard />
         <Row className="mt-4">
           <History />
-          <Graph width={500} height={500} />
+          <Graph width={800} height={800} />
         </Row>
       </Row>
     </Container>
